@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
-import Foto from './Foto';
+import FotoItem from './Foto';
 
 export default class Timeline extends Component {
-    render(){
-        return (
-        <div className="fotos container">
-          <Foto/>
-          <Foto/>
-        </div>            
-        );
-    }
+
+  constructor() {
+    super();
+    this.state = {fotos:[]};
+  }
+
+componentDidMount() {
+  //fetch('http://localhost:8080/api/public/fotos/alots/')
+  //fetch('http://localhost:8080/api/public/fotos/rafael/')
+  fetch('https://instalura-api.herokuapp.com/api/public/fotos/rafael')
+  //fetch('https://instalura-api.herokuapp.com/api/public/fotos/alots')
+    .then(response => response.json())
+    .then(fotos => {
+      this.setState({fotos:fotos});
+    });
+}
+
+  render() {
+    return (
+      <div className="fotos container">
+        {
+          this.state.fotos.map(foto => <FotoItem foto={foto} />)
+        }
+      </div>
+    );
+  }
 }
