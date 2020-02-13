@@ -10,7 +10,7 @@ class FotoAtualizacoes extends Component {
                 <input type="submit" value="Comentar!" className="fotoAtualizacoes-form-submit"/>
               </form>
 
-            </section>            
+            </section>
         );
     }
 }
@@ -22,14 +22,14 @@ class FotoInfo extends Component {
               <div className="foto-info-likes">
                 {
                   this.props.foto.likers.map(liker => {
-                    return(<a href="#">
+                    return(<a key={liker.login} href="#">
                     {liker.login},
                   </a>)
                   })
                 }
 
                  curtiram
-             
+
               </div>
 
               <p className="foto-info-legenda">
@@ -41,7 +41,7 @@ class FotoInfo extends Component {
               {
                       this.props.foto.comentarios.map(comentario => {
                           return (
-                              <li className="comentario">
+                              <li className="comentario" key={comentario.id}>
                                   <a className="foto-info-autor">{comentario.login}</a>
                                   {comentario.texto}
                               </li>
@@ -49,7 +49,7 @@ class FotoInfo extends Component {
                       })
               }
               </ul>
-            </div>            
+            </div>
         );
     }
 }
@@ -63,11 +63,11 @@ class FotoHeader extends Component {
                 <figcaption className="foto-usuario">
                   <a href="#">
                     {this.props.foto.loginUsuario}
-                  </a>  
+                  </a>
                 </figcaption>
               </figure>
               <time className="foto-data">{this.props.foto.horario}</time>
-            </header>            
+            </header>
         );
     }
 }
@@ -80,7 +80,7 @@ export default class FotoItem extends Component {
             <img alt="foto" className="foto-src" src={this.props.foto.urlFoto}/>
             <FotoInfo foto={this.props.foto}/>
             <FotoAtualizacoes/>
-          </div>            
+          </div>
         );
     }
 }
