@@ -2,11 +2,36 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 
 class FotoAtualizacoes extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { likeada: !this.props.foto.likeada };
+  }
+
+  like(event){
+    event.preventDefault();
+
+    fetch(`http://localhost:8080/api/fotos/${this.props.foto.id}/like?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`)
+        .then(response => {
+            if(response.ok) {
+                return response.json();
+            } else {
+                throw new Error("não foi possível realizar o like da foto");
+            }
+        })
+
+      };
   render() {
     return (
       <section className="fotoAtualizacoes">
-        <a href="#" className="fotoAtualizacoes-like">
-          Likar
+        <a
+          onClick={this.like.bind(this)}
+          className={
+            this.state.likeada
+              ? "fotoAtualizacoes-like-ativo"
+              : "fotoAtualizacoes-like"
+          }
+        >
+          Linkar
         </a>
         <form className="fotoAtualizacoes-form">
           <input
