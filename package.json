@@ -15,7 +15,9 @@
     "stylelint-config-recommended": "^3.0.0"
   },
   "dependencies": {
+    "pubsub-js": "^1.5.4",
     "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^15.4.2",
     "react-router": "^3.2.5"
   },
